@@ -1,21 +1,22 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from ui_everyday import Ui_MainWindow
 
-from ui_vuw import Ui_mainWindow
 
-
-class TaskSystem(QMainWindow, Ui_mainWindow):
+class TaskSystem(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
 
 
-def except_hooks(cls, exception, traceback):
-    sys.__excepthook__(cls, exception, traceback)
+def except_hook(clc, exception, traceback):
+    sys.__excepthook__(clc, exception, traceback)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
+    sys.excepthook = except_hook
     app = QApplication(sys.argv)
     wnd = TaskSystem()
     wnd.show()
     sys.exit(app.exec())
+
